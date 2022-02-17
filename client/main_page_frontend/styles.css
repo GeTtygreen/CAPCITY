@@ -1,0 +1,119 @@
+/*
+*  html5resetcss
+*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    position: relative;
+    font-family: 'Architects Daughter', cursive;
+
+}
+
+::selection{
+    background: green;
+    color:peru;
+}
+
+.navbar{
+    width:100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+    background:peachpuff;
+    z-index: 9;
+}
+.links-container{
+    display: flex;
+    list-style: none;
+}
+
+.link{
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration:none;
+    text-transform: capitalize;
+    color: forestgreen;
+}
+
+.header{
+    margin-top: 60px;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: url(./img/pic2.jpg);
+    background-size:cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content{
+    text-align: center;
+}
+
+.heading{
+    color: forestgreen;
+    text-transform: capitalize;
+    font-size: 80px;
+    line-height: 60px;
+    margin-bottom: 80px;
+}
+
+.heading .small{
+    display: block;
+    font-size: 40px;
+}
+.heading .no-fill{
+    font-style: italic;
+    color:transparent;
+    -webkit-text-stroke: 2px forestgreen;
+}
+
+.blogs-section{
+    width: 100%;
+    padding: 50px 5vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 80px;
+
+}
+
+.blog{
+    width: 70vh;
+    min-width: 200px
+}
+.btn{
+    padding: 10px 20px; 
+    border-radius: 10px;
+    background: peru;
+    color: forestgreen;
+    text-decoration: none;
+    text-transform: capitalize;
+  
+}
+
+/* LOGIN PAGE STYLING  */

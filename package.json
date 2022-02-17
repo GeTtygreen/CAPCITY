@@ -1,0 +1,38 @@
+{
+  "name": "capstone_project",
+  "version": "1.0.0",
+  "description": "capstone project",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeTtygreen/ItsUpThere.git"
+  },
+  "keywords": [
+    "getty"
+  ],
+  "author": "GeTty Winslo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeTtygreen/ItsUpThere/issues"
+  },
+  "homepage": "https://github.com/GeTtygreen/ItsUpThere#readme",
+  "dependencies": {
+    "amadeus": "^5.7.1",
+    "axios": "^0.26.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-fileupload": "^1.3.1",
+    "express-session": "^1.17.2",
+    "firebase": "^9.6.6",
+    "helmet": "^5.0.2",
+    "mongoose": "^6.2.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
