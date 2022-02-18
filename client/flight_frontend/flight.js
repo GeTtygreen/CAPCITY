@@ -1,54 +1,57 @@
-// GRABBING ALL THE ELEMENTS FROM HTML 
+// GRABBING ALL THE ELEMENTS FROM HTML
 const originInput = document.getElementById("origin-input");
- const originOptions = document.getElementById("origin-options");
- const destinationInput = document.getElementById("destination-input");
- const destinationOptions = document.getElementById("destination-options");
- const flightTypeSelect = document.getElementById("flight-type-select");
- const departureDateInput = document.getElementById("departure-date-input");
- const returnDate = document.getElementById("return-date");
- const returnDateInput = document.getElementById("return-date-input");
- const travelClassSelect = document.getElementById("travel-class-select");
- const adultsInput = document.getElementById("adults-input");
- const childrenInput = document.getElementById("children-input");
- const infantsInput = document.getElementById("infants-input");
- const searchButton = document.getElementById("search-button");
- const searchResultsSeparator = document.getElementById(
-   "search-results-separator"
- );
- const searchResultsLoader = document.getElementById("search-results-loader");
- const searchResults = document.getElementById("search-results");
- const autocompleteTimeout = 300;
+console.log(originInput);
+const originOptions = document.getElementById("origin-options");
 
- let autocompleteTimeoutHandle = 0;
- let destinationCityCodes = {};
- let originCityCodes = {};
+const destinationInput = document.getElementById("destination-input");
+console.log(destinationInput);
+const destinationOptions = document.getElementById("destination-options");
+const flightTypeSelect = document.getElementById("flight-type-select");
+const departureDateInput = document.getElementById("departure-date-input");
+const returnDate = document.getElementById("return-date");
+const returnDateInput = document.getElementById("return-date-input");
+const travelClassSelect = document.getElementById("travel-class-select");
+const adultsInput = document.getElementById("adults-input");
+const childrenInput = document.getElementById("children-input");
+const infantsInput = document.getElementById("infants-input");
+const searchButton = document.getElementById("search-button");
+const searchResultsSeparator = document.getElementById(
+  "search-results-separator"
+);
+const searchResultsLoader = document.getElementById("search-results-loader");
+const searchResults = document.getElementById("search-results");
+const autocompleteTimeout = 300;
+
+let autocompleteTimeoutHandle = 0;
+let destinationCityCodes = {};
+let originCityCodes = {};
 // RESETS ALL INPUT DATA
- const reset = () => {
-   originInput.value = "";
-   destinationInput.value = "";
-   flightTypeSelect.value = "one-way";
-   departureDateInput.valueAsDate = new Date();
-   returnDateInput.valueAsDate = new Date();
-   returnDate.classList.add("d-none");
-   travelClassSelect.value = "ECONOMY";
-   adultsInput.value = 1;
-   childrenInput.value = 0;
-   infantsInput.value = 0;
-   searchButton.disabled = true;
-   searchResultsSeparator.classList.add("d-none");
-   searchResultsLoader.classList.add("d-none");
- };
+const reset = () => {
+  originInput.value = "";
+  destinationInput.value = "";
+  flightTypeSelect.value = "one-way";
+  departureDateInput.valueAsDate = new Date();
+  returnDateInput.valueAsDate = new Date();
+  returnDate.classList.add("d-none");
+  travelClassSelect.value = "ECONOMY";
+  adultsInput.value = 1;
+  childrenInput.value = 0;
+  infantsInput.value = 0;
+  searchButton.disabled = true;
+  searchResultsSeparator.classList.add("d-none");
+  searchResultsLoader.classList.add("d-none");
+};
 //  FORMATS DATA INTO ISO8601 YYY-MM-DD
- const formatDate = (date) => {
-   const [formattedDate] = date.toISOString().split("T");
+const formatDate = (date) => {
+  const [formattedDate] = date.toISOString().split("T");
 
-   return formattedDate;
- };
-//  FORMATS NUMBER SO NO FLOATING NUM CAN BE ALLOWED 
- const formatNumber = (number) => {
+  return formattedDate;
+};
+//  FORMATS NUMBER SO NO FLOATING NUM CAN BE ALLOWED
+const formatNumber = (number) => {
   return `${Math.abs(parseInt(number))}`;
 };
-// AUTO COMPLETE SECTION FOR INPUT FIELDS 
+// AUTO COMPLETE SECTION FOR INPUT FIELDS
 const autocomplete = (input, datalist, cityCodes) => {
   clearTimeout(autocompleteTimeoutHandle);
   autocompleteTimeoutHandle = setTimeout(async () => {
@@ -70,9 +73,10 @@ const autocomplete = (input, datalist, cityCodes) => {
     }
   }, autocompleteTimeout);
 };
-// search flights 
+// SEARCH FLIGHTS
 const search = async () => {
   try {
+    console.log("hit search flights");
     const returns = flightTypeSelect.value === "round-trip";
     const params = new URLSearchParams({
       origin: originCityCodes[originInput.value.toLowerCase()],
@@ -86,8 +90,8 @@ const search = async () => {
         ? { returnDate: formatDate(returnDateInput.valueAsDate) }
         : {}),
     });
-    console.log(params)
-    const response = await fetch(`/city-and-airport-search?${params}`);
+    console.log();
+    const response = await fetch(`/api/search?${params}`);
     const data = await response.json();
 
     return data;
@@ -96,6 +100,7 @@ const search = async () => {
   }
 };
 const showResults = (results) => {
+  console.log('show results ')
   if (results.length === 0) {
     searchResults.insertAdjacentHTML(
       "beforeend",
@@ -104,7 +109,7 @@ const showResults = (results) => {
       </li>`
     );
   }
-  results.forEach(({ itineraries, price }) => {
+   results.forEach(({ itineraries, price }) => {
     const priceLabel = `${price.total} ${price.currency}`;
 
     searchResults.insertAdjacentHTML(
@@ -142,30 +147,31 @@ const showResults = (results) => {
 document.body.addEventListener("change", () => {
   clearTimeout(autocompleteTimeoutHandle);
   searchButton.disabled = !originInput.value || !destinationInput.value;
- });
- originInput.addEventListener("input", () => {
-   autocomplete(originInput, originOptions, originCityCodes);
- });
- destinationInput.addEventListener("input", () => {
-   autocomplete(destinationInput, destinationOptions, destinationCityCodes);
- });
- flightTypeSelect.addEventListener("change", () => {
-   if (flightTypeSelect.value === "one-way") {
-     returnDate.classList.add("d-none");
-   } else {
-     returnDate.classList.remove("d-none");
-   }
- });
-//  SEARCH BUTTON 
- searchButton.addEventListener("click", async () => {
-   searchResultsSeparator.classList.remove("d-none");
-   searchResultsLoader.classList.remove("d-none");
-   searchResults.textContent = "";
+});
+originInput.addEventListener("input", () => {
+  autocomplete(originInput, originOptions, originCityCodes);
+});
+destinationInput.addEventListener("input", () => {
+  console.log("hit that hoe");
+  autocomplete(destinationInput, destinationOptions, destinationCityCodes);
+});
+flightTypeSelect.addEventListener("change", () => {
+  console.log("hit that hoe2");
+  if (flightTypeSelect.value === "one-way") {
+    returnDate.classList.add("d-none");
+  } else {
+    returnDate.classList.remove("d-none");
+  }
+});
+//  SEARCH BUTTON
+searchButton.addEventListener("click", async () => {
+  searchResultsSeparator.classList.remove("d-none");
+  searchResultsLoader.classList.remove("d-none");
+  searchResults.textContent = "";
+  const results = await search();
+console.log(results)
+  searchResultsLoader.classList.add("d-none");
+  showResults(results);
+});
 
-   const results = await search();
-
-   searchResultsLoader.classList.add("d-none");
-   showResults(results);
- });
-
- reset();
+reset();
