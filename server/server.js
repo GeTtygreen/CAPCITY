@@ -3,13 +3,18 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
-import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { dirname } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 import fileupload from "express-fileupload";
 import helmet from "helmet";
 import morgan from "morgan";
 import mongoose from "mongoose";
+// Import the functions you need from the SDKs you need
+
+
+
+
 
 import Amadeus from "amadeus";
 const amadeus = new Amadeus({
@@ -26,26 +31,49 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+let initial_path = path.join(__dirname,"client");
 
-app.use('/client',express.static("client"));
-
-
-//REVIEW POST
-let initial_path = path.join("client");
-
-app.use(express.static("initial_path"));
+app.use(express.static(initial_path));
 app.use(fileupload());
 
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/main_page_frontend/index.html"));
-});
+  res.sendFile(path.join(initial_path, "../../client/main_page_frontend/index.html"));
+ });
+// app.get("/flight_frontend", (req, res) => {
+//   res.sendFile(path.join(initial_path, "flight.html"));
+
+// app.get("/login_frontend", (req, res) => {
+//   res.sendFile(path.join(initial_path, "login.html"));
+// });
+// app.get("/Profile_frontend", (req, res) => {
+//   res.sendFile(path.join(initial_path, "profile.html"));
+// });
+// app.get("/signup_frontend", (req, res) => {
+//   res.sendFile(path.join(initial_path, "signup.html"));
+// });
+
+
+
+
+// REVIEW POST
+
+app.use(express.static("initial_path" + "../../client/main_page_frontend"));
+app.use(express.static("initial_path" + "../../client/Profile_frontend"));
+app.use(express.static("initial_path" + "../../client/signup_frontend"));
+app.use(express.static("initial_path" + "../../client/login_frontend"));
+app.use(express.static("initial_path" + "../../client/flight_frontend"));
+app.use(express.static("initial_path" + "../../client/upload"));
+app.use("/client/upload",express.static("initial_path" + "../../client/upload"));
+
+
 app.get("/reviews", (req, res) => {
   res.sendFile(
-    path.join(initial_path, "..client/main_page_frontend/reviewpage.html")
+    path.join(initial_path, "../client/main_page_frontend/reviewpage.html")
   );
 });
 //uploads
-app.post("/upload", (req, res) => {
+app.post("/client/upload", (req, res) => {
   let file = req.files.image;
   let date = new Date();
   //image name
@@ -59,7 +87,7 @@ app.post("/upload", (req, res) => {
       throw err;
     } else {
       // uploaded image path
-      res.json(`upload/ ${imagename}`);
+      res.json(`client/upload/${imagename}`);
     }
   });
 });
@@ -329,9 +357,6 @@ app.post(`/flight-booking`, (req, res) => {
     .catch(function (response) {
       res.send(response);
     });
-});
-app.use((req, res) => {
-  res.json("404");
 });
 
 const port = process.env.PORT || process.env.SERVER_PORT;

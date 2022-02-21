@@ -16,3 +16,14 @@ body{
 .card-body{
     background-color:peachpuff;
 }
+#house{
+    background:transparent;
+    color:rgb(33, 84, 123) ;
+    margin-left: 20px;
+    font-size: 30px;
+    transition:width 250ms;
+}
+#house:hover{
+    color: peru;
+    font-size:40px;
+}

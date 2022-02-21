@@ -19,24 +19,28 @@ uploadInput.addEventListener('change', () => {
 
 const uploadImage = (uploadFile, uploadType) => {
     const [file] = uploadFile.files;
-    console.log(file,file.type)
+    
     if(file && file.type.includes("image")){
         const formdata = new FormData();
         formdata.append('image', file);
 
-        fetch('/upload', {
-            method: 'post',
+        fetch('/client/upload', {
+          
+            method: 'POST',
             body: formdata
+            
         }).then(res => res.json())
         .then(data => {
-        
+        console.log(location)
             if(uploadType == "image"){
                 addImage(data, file.name);
             } else{
                 bannerPath = `${location.origin}/${data}`;
                 banner.style.backgroundImage = `url("${bannerPath}")`;
             }
-        })
+        }).catch(
+            err => console.log(err));
+        
     } else{
         alert("upload Image only");
     }
@@ -59,13 +63,13 @@ publishBtn.addEventListener('click', () => {
         for(let i = 0; i < 4; i++){
             id += letters[Math.floor(Math.random() * letters.length)];
         }
-
+// FIREBASE
         // setting up docName
         let docName = `${blogTitle}-${id}`;
         let date = new Date(); // for published at info
 
         //access firstore with db variable;
-        db.collection("blogs").doc(docName).set({
+        app.collection("REVIEWS").doc(docName).set({
             title: blogTitleField.value,
             article: articleField.value,
             bannerImage: bannerPath,

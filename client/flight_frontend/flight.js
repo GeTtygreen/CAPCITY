@@ -76,7 +76,6 @@ const autocomplete = (input, datalist, cityCodes) => {
 // SEARCH FLIGHTS
 const search = async () => {
   try {
-    console.log("hit search flights");
     const returns = flightTypeSelect.value === "round-trip";
     const params = new URLSearchParams({
       origin: originCityCodes[originInput.value.toLowerCase()],
@@ -100,7 +99,7 @@ const search = async () => {
   }
 };
 const showResults = (results) => {
-  console.log('show results ')
+  
   if (results.length === 0) {
     searchResults.insertAdjacentHTML(
       "beforeend",

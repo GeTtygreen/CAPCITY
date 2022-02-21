@@ -29,11 +29,13 @@ body{
 }
 .banner-upload-btn:hover{
     color:peru;
+    width: 30px;
 }
 
 .banner-upload-btn img{
-    color: forestgreen;
-    width: 20px;
+    /* color: forestgreen; */
+     width: 20px;
+     transition: width 250ms;
 }
 
 .blog{
@@ -113,8 +115,21 @@ textarea::-webkit-scrollbar-thumb{
     color:green ;
     margin-left: 20px;
     font-size: 30px;
+    transition:width 250ms;
 }
 
 .btn.grey:hover,.btn.dark:hover{
     color: peru;
+    font-size:40px;
+}
+#house{
+    background:transparent;
+    color:green ;
+    margin-left: 20px;
+    font-size: 30px;
+    transition:width 250ms;
+}
+#house:hover{
+    color: peru;
+    font-size:40px;
 }

@@ -115,5 +115,8 @@ body{
     text-transform: capitalize;
   
 }
+#logo{
+    color: green ;
+}
 
 /* LOGIN PAGE STYLING  */
