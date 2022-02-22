@@ -7,9 +7,6 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 import fileupload from "express-fileupload";
-import helmet from "helmet";
-import morgan from "morgan";
-import mongoose from "mongoose";
 // Import the functions you need from the SDKs you need
 
 
@@ -40,21 +37,6 @@ app.use(fileupload());
 app.get("/", (req, res) => {
   res.sendFile(path.join(initial_path, "../../client/main_page_frontend/index.html"));
  });
-// app.get("/flight_frontend", (req, res) => {
-//   res.sendFile(path.join(initial_path, "flight.html"));
-
-// app.get("/login_frontend", (req, res) => {
-//   res.sendFile(path.join(initial_path, "login.html"));
-// });
-// app.get("/Profile_frontend", (req, res) => {
-//   res.sendFile(path.join(initial_path, "profile.html"));
-// });
-// app.get("/signup_frontend", (req, res) => {
-//   res.sendFile(path.join(initial_path, "signup.html"));
-// });
-
-
-
 
 // REVIEW POST
 
@@ -359,5 +341,5 @@ app.post(`/flight-booking`, (req, res) => {
     });
 });
 
-const port = process.env.PORT || process.env.SERVER_PORT;
+const port = process.env.PORT || SERVER_PORT;
 app.listen(port, () => console.log(`YOUR IN THE ${port} ZONE`));
