@@ -1,4 +1,5 @@
-import {} from "dotenv/config";
+// import {} from "dotenv/config";
+import  "dotenv/config"
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -17,10 +18,6 @@ import Amadeus from "amadeus";
 const amadeus = new Amadeus({
   clientId: process.env.API_KEY_AMADEUS,
   clientSecret: process.env.API_SECRET_AMADEUS,
-});
-
-mongoose.connect("127.0.0.1/myapp", () => {
-  console.log("MongoDb its up");
 });
 
 // import {flightSearch,autoComplete} from './flight_booking_backend/flycontrol.js'
@@ -341,5 +338,5 @@ app.post(`/flight-booking`, (req, res) => {
     });
 });
 
-const port = process.env.PORT || SERVER_PORT;
+const port = process.env.PORT || process.env.SERVER_PORT;
 app.listen(port, () => console.log(`YOUR IN THE ${port} ZONE`));
