@@ -71,9 +71,14 @@ app.post("/uploads", (req, res) => {
   });
 });
 
-// app.get("/:blog",(req,res) => {
-//   res.send
-// })
+app.get("/:blog",(req,res) => {
+  res.send(path.join(initial_path,"../client/main_page_frontend/reviewpage.html"))
+});
+
+app.use((req, res) => {
+  res.json("404");
+})
+
 
 // FLIGHT ENDPOINTS
 app.get("/api/autocomplete", async (request, response) => {
