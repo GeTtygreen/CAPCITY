@@ -1,10 +1,9 @@
 // GRABBING ALL THE ELEMENTS FROM HTML
 const originInput = document.getElementById("origin-input");
-console.log(originInput);
-const originOptions = document.getElementById("origin-options");
 
+const originOptions = document.getElementById("origin-options");
 const destinationInput = document.getElementById("destination-input");
-console.log(destinationInput);
+
 const destinationOptions = document.getElementById("destination-options");
 const flightTypeSelect = document.getElementById("flight-type-select");
 const departureDateInput = document.getElementById("departure-date-input");
