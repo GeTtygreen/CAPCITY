@@ -6,8 +6,8 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-const __dirname = dirname(fileURLToPath(import.meta.url));
 import fileupload from "express-fileupload";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 // Import the functions you need from the SDKs you need
 
 
@@ -35,41 +35,45 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(initial_path, "../../client/main_page_frontend/index.html"));
  });
 
-// REVIEW POST
+
 
 app.use(express.static("initial_path" + "../../client/main_page_frontend"));
 app.use(express.static("initial_path" + "../../client/Profile_frontend"));
 app.use(express.static("initial_path" + "../../client/signup_frontend"));
 app.use(express.static("initial_path" + "../../client/login_frontend"));
 app.use(express.static("initial_path" + "../../client/flight_frontend"));
-app.use(express.static("initial_path" + "../../client/upload"));
-app.use("/client/upload",express.static("initial_path" + "../../client/upload"));
+app.use(express.static("initial_path" + "../../client/uploads"));
+app.use("/uploads",express.static("initial_path" + "../../client/uploads"));
 
-
+// REVIEW POST
 app.get("/reviews", (req, res) => {
   res.sendFile(
     path.join(initial_path, "../client/main_page_frontend/reviewpage.html")
   );
 });
 //upload
-app.post("/upload", (req, res) => {
+app.post("/uploads", (req, res) => {
   let file = req.files.image;
   let date = new Date();
   //image name
   let imagename = date.getDate() + date.getTime() + file.name;
   // image upload path name
-  let path = "client/upload/" + imagename;
+  let path = "client/uploads/" + imagename;
 
   // create upload object
-  file.mv(path, (err, result) => {
+  file.mv(path, (err) => {
     if (err) {
       throw err;
     } else {
       // uploaded image path
-      res.json(`upload/${imagename}`);
+      res.json(`uploads/${imagename}`);
     }
   });
 });
+
+// app.get("/:blog",(req,res) => {
+//   res.send
+// })
 
 // FLIGHT ENDPOINTS
 app.get("/api/autocomplete", async (request, response) => {

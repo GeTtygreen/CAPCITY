@@ -24,14 +24,15 @@ const uploadImage = (uploadFile, uploadType) => {
         const formdata = new FormData();
         formdata.append('image', file);
 
-        fetch('/upload', {
+        fetch('/uploads', {
           
             method: 'POST',
             body: formdata
             
         }).then(res => res.json())
+       
         .then(data => {
-        console.log(location)
+      
             if(uploadType == "image"){
                 addImage(data, file.name);
             } else{
@@ -69,7 +70,7 @@ publishBtn.addEventListener('click', () => {
         let date = new Date(); // for published at info
 
         //access firstore with db variable;
-        app.collection("REVIEWS").doc(docName).set({
+        db.collection("blogs").doc(docName).set({
             title: blogTitleField.value,
             article: articleField.value,
             bannerImage: bannerPath,
