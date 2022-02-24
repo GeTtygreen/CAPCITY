@@ -3,7 +3,7 @@
 }
 
 body{
-    background:url('../main_page_frontend/img/windowseat.jpg');
+    background:url('img/windowseat.jpg');
     color:peru;
     font-family: 'Architects Daughter', cursive;
 }
