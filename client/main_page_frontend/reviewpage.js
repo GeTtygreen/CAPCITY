@@ -24,7 +24,7 @@ const uploadImage = (uploadFile, uploadType) => {
         const formdata = new FormData();
         formdata.append('image', file);
 
-        fetch('/client/upload', {
+        fetch('/upload', {
           
             method: 'POST',
             body: formdata

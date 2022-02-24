@@ -52,7 +52,7 @@ app.get("/reviews", (req, res) => {
   );
 });
 //uploads
-app.post("/client/upload", (req, res) => {
+app.post("/upload", (req, res) => {
   let file = req.files.image;
   let date = new Date();
   //image name
@@ -66,7 +66,7 @@ app.post("/client/upload", (req, res) => {
       throw err;
     } else {
       // uploaded image path
-      res.json(`client/upload/${imagename}`);
+      res.json(`upload/${imagename}`);
     }
   });
 });
