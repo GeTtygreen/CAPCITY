@@ -51,7 +51,7 @@ app.get("/reviews", (req, res) => {
     path.join(initial_path, "../client/main_page_frontend/reviewpage.html")
   );
 });
-//uploads
+//upload
 app.post("/upload", (req, res) => {
   let file = req.files.image;
   let date = new Date();
