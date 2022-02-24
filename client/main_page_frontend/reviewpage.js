@@ -1,3 +1,19 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+import {getFirestore, doc, setDoc} from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyDFGIEq10EP7P-sShr2pYu929gyd7cTF5M",
+    authDomain: "its-up-there.firebaseapp.com",
+    projectId: "its-up-there",
+    storageBucket: "its-up-there.appspot.com",
+    messagingSenderId: "412955734815",
+    appId: "1:412955734815:web:1c821c1f59766ab808b62a"
+  };
+  
+  
+  
+   const app =initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+ 
 const blogTitleField = document.querySelector('.title');
 const articleField = document.querySelector('.article');
 
@@ -69,13 +85,12 @@ publishBtn.addEventListener('click', () => {
         let docName = `${blogTitle}-${id}`;
         let date = new Date(); // for published at info
 
-        //access firstore with db variable;
-        db.collection("blogs").doc(docName).set({
+        setDoc(doc(db,"blogs",blogTitleField.value + Date.now()),{
             title: blogTitleField.value,
             article: articleField.value,
             bannerImage: bannerPath,
             publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-        })
+        } )
         .then(() => {
             location.href = `/${docName}`;
         })
