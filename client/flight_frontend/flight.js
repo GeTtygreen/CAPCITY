@@ -150,11 +150,11 @@ originInput.addEventListener("input", () => {
   autocomplete(originInput, originOptions, originCityCodes);
 });
 destinationInput.addEventListener("input", () => {
-  console.log("hit that hoe");
+ 
   autocomplete(destinationInput, destinationOptions, destinationCityCodes);
 });
 flightTypeSelect.addEventListener("change", () => {
-  console.log("hit that hoe2");
+  
   if (flightTypeSelect.value === "one-way") {
     returnDate.classList.add("d-none");
   } else {

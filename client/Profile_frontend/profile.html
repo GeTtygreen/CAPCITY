@@ -24,9 +24,9 @@
           background:transparent;
           color: forestgreen;
         }
-        .headbar{
+        #headbar{
          max-width:100%;
-         position:relative;
+         position:sticky;
         }
         .profile,.article {
           position: relative;
@@ -107,9 +107,12 @@
       <div class="banner"></div>
       <div class="profile">
         <h1 class="title">Post</h1>
-        <p class="published"><span>published at -</span></p>
-        <div class="article"></div>
+        <p class="published"><span> -</span></p>
+        <div class="article">
+          
+        </div>
       </div>
+      <script type="module" src="reviewpage.js"></script>
     <script >
         //   ---------------------------------------------------------- GET ELEMENTS ---------------------
       let userlink = document.getElementById("userlink");
@@ -161,6 +164,19 @@
           signoutlink.href = "javascript:Signout()";
         }
       };
+
+    // ------------------------------adding post to profile page ------------------------------
+    let blogId = devodeURI(location.pathname.split("/").pop());
+
+    let docRef = db.collection("blogs").doc(blogId);
+    docRef.get().then((doc)=>{
+      if(doc.exists) {
+        console.log(doc.data);
+      }else{
+        location.replace("/");
+      }
+    })
     </script>
+    
   </body>
 </html>
